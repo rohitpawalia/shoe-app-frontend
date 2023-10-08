@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 
   const paths = category?.data?.map((c) => ({
     params: {
-      slug: c.attributes.slug
+      slug: c?.attributes?.slug
     }
   }))
 
