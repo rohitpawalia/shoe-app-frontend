@@ -140,11 +140,11 @@ const dispatch = useDispatch()
 export default ProductDetails
 
 export async function getStaticPaths() {
-  const product = await fetchDataApi('/api/products?populate=*');
+  const products = await fetchDataApi('/api/products?populate=*');
 
-  const paths = product?.data?.map((p) => ({
+  const paths = products?.data?.map((p) => ({
     params: {
-      slug: p?.attributes?.slug
+      slug: p.attributes.slug
     }
   }))
 
@@ -161,7 +161,8 @@ export async function getStaticProps({params: {slug}}){
   const products = await fetchDataApi(`/api/products?populate=*&[filters][categories][slug][$eq]=${slug}`)
   return {
     props: {
-      product
+      product,
+      products,
     }
   }
 }
