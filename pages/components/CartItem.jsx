@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CartItem = ({data}) => {
-    const p = data.attributes || {};
+    const p = data?.attributes;
 
     const dispatch = useDispatch();
 
@@ -59,7 +59,7 @@ const CartItem = ({data}) => {
                             <div className='font-semibold'>Size:</div>
                             <select className='hover:text-black'
                             onChange={(e)=>updateCartItem(e, "selected")}>
-                                {p.size && p.size.data.map((item, i) => {
+                                {p?.size?.data?.map((item, i) => {
                                     return(
                                         <option 
                                         key={i}
