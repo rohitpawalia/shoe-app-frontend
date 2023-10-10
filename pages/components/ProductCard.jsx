@@ -4,14 +4,23 @@ import React from 'react'
 import { getDiscountedPricePercentage } from "@/utils/helper";
 
 
-const ProductCard = ({ data: { attributes: p } }) => {
+const ProductCard = ({ data }) => {
+    if (!data || !data.attributes) {
+        return null; // Or render an error message or placeholder
+      }
+      const { attributes: p, id } = data;
+
+      // Check if p is defined
+      if (!p) {
+        return null; // Or render an error message or placeholder
+      }    
   return (
      <Link href={`/product/${p.slug}`} className='transform overflow-hidden bg-white duration-200
      hover:scale-105 cursor-pointer'>
         <Image 
         width={500}
         height={500}
-        src={p.thumbnail.data.attributes.url}
+        src={p?.thumbnail?.data?.attributes?.url}
         alt={p.name}/>
         <div className='p-4 text-black/[0.9]'>
          <h2 className='text-lg font-medium'>{p.name}</h2>

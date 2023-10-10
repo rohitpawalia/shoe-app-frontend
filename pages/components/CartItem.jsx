@@ -5,7 +5,11 @@ import { useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CartItem = ({data}) => {
-    const p = data.attributes;
+    if (!data || !data.attributes) {
+        return null; // Or render an error message or placeholder
+      }
+    
+    const p = data?.attributes;
 
     const dispatch = useDispatch();
 
