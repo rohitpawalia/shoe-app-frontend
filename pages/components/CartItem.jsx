@@ -56,14 +56,14 @@ const CartItem = ({data}) => {
                 <div className="text-md font-medium text-black/[0.5] hidden md:block">
                 {p.subtitle}
                 </div>
-                <div className='flex items-center justify-between mt-4'>
+                <div className='flex items-center justify-between mt-4 '>
                     <div className='flex items-center gap-2 md:gap-10 text-sm md:text-md
                     text-black/[0.5]'>
                         <div className='flex items-center gap-1'>
                             <div className='font-semibold'>Size:</div>
                             <select className='hover:text-black'
                             onChange={(e)=>updateCartItem(e, "selected")}>
-                                {p.size.data.map((item, i) => {
+                                {p?.size?.data?.map((item, i) => {
                                     return(
                                         <option 
                                         key={i}
@@ -100,12 +100,13 @@ const CartItem = ({data}) => {
                             </select>
                         </div>
                     </div>
+                    <div className="sm:flex items-center gap-1">
                     <RiDeleteBin6Line
                         onClick={() =>
                             dispatch(removeFromCart({ id: data.id }))
                         }
-                        className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
-                    />
+                        className="cursor-pointer flex text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
+                    /></div>
                 </div>
                 
 

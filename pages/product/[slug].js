@@ -14,7 +14,7 @@ import { getDiscountedPricePercentage } from '@/utils/helper'
 
 
 const ProductDetails = ({ product, products }) => {
-  const [selectedSize, setSelectedSize] = useState();
+  const [selected, setSelected] = useState();
   const [showError, setShowError] = useState(false);
   const dispatch = useDispatch();
   const p = product?.data?.[0]?.attributes;
@@ -109,12 +109,12 @@ const ProductDetails = ({ product, products }) => {
                                               ? "hover:border-black cursor-pointer"
                                               : "cursor-not-allowed bg-black/[0.1] opacity-50"
                                       } ${
-                                          selectedSize === item.size
+                                          selected === item.size
                                               ? "border-black"
                                               : ""
                                       }`}
                                       onClick={() => {
-                                          setSelectedSize(item.size);
+                                          setSelected(item.size);
                                           setShowError(false);
                                       }}
                                   >
@@ -138,7 +138,7 @@ const ProductDetails = ({ product, products }) => {
                       <button
                           className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
                           onClick={() => {
-                              if (!selectedSize) {
+                              if (!selected) {
                                   setShowError(true);
                                   document
                                       .getElementById("sizesGrid")
@@ -150,7 +150,7 @@ const ProductDetails = ({ product, products }) => {
                                   dispatch(
                                       addToCart({
                                           ...product?.data?.[0],
-                                          selectedSize,
+                                          selected,
                                           oneQuantityPrice: p.price,
                                       })
                                   );
